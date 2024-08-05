@@ -3,6 +3,13 @@ pipeline {
     tools {
         maven "Maven"
     }
+    options {
+        buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '2')
+        }
+    triggers {
+    pollSCM '* * * * *'
+}
+
     stages {
         stage('CheckoutCode') {
             steps {
